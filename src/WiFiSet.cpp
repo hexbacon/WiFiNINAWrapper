@@ -66,8 +66,8 @@ bool WiFiSet::checkWifiModule()
 bool WiFiSet::checkFirmwareVersion()
 {
     // Check for the firmware version
-    String fv = WiFi.firmwareVersion();
-    if (fv < WIFI_FIRMWARE_LATEST_VERSION)
+    String firmware = WiFi.firmwareVersion();
+    if (firmware < WIFI_FIRMWARE_LATEST_VERSION)
     {
         Serial.println("Please upgrade the firmware");
         // don't continue
@@ -99,7 +99,7 @@ void WiFiSet::connectWEP()
         Serial.print("Attempting to connect to SSID: ");
         Serial.println(ssid);
         // Connect to WPA/WPA2 network. Change this line if using open or WEP network:
-        status = WiFi.begin(ssid, getKeyIndex(), pass);
+        status = WiFi.begin(ssid, keyIndex, pass);
         // wait 10 seconds for connection:
         delay(10000);
     }
