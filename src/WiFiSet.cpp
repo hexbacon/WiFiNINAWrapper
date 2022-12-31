@@ -6,10 +6,23 @@ WiFiSet::WiFiSet()
     // Do nothing
 }
 
+WiFiSet::WiFiSet(const int exitPin_)
+{
+    setExitPin(exitPin_);
+}
+
 WiFiSet::WiFiSet(char *ssid, char *pass)
 {
     setSSID(ssid);
     setPass(pass);
+    setExitPin(0);
+}
+
+WiFiSet::WiFiSet(char *ssid, char *pass, const int exitPin_)
+{
+    setSSID(ssid);
+    setPass(pass);
+    setExitPin(exitPin_);
 }
 
 // Mutators
@@ -28,6 +41,11 @@ void WiFiSet::setKeyIndex(int keyIndex)
     this->keyIndex = keyIndex;
 }
 
+void WiFiSet::setExitPin(const int exitPin_)
+{
+    exitPin = exitPin_;
+}
+
 // Accessors
 char *WiFiSet::getSSID()
 {
@@ -39,9 +57,14 @@ char *WiFiSet::getPass()
     return pass;
 }
 
-int WiFiSet::getKeyIndex()
+int WiFiSet::getKeyIndex() const
 {
     return keyIndex;
+}
+
+int WiFiSet::getExitPin() const
+{
+    return exitPin;
 }
 
 // Methods
@@ -74,6 +97,16 @@ bool WiFiSet::checkFirmwareVersion()
         return false;
     }
     return true;
+}
+
+bool WiFiSet::exit()
+{
+    if(getExitPin() > 0)
+    {
+        WiFi.end();
+        return true;
+    }
+    return false;
 }
 
 void WiFiSet::connectNoEncryption()
