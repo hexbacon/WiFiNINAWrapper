@@ -71,3 +71,9 @@ To deploy the wrapper, include on your project file
     // WPA Encryption
     myWifi.connectWPA();
 ```
+
+10. Terminates any connection
+    
+``` c++
+    myWifi.exit()
+```
