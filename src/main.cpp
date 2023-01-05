@@ -1,18 +1,18 @@
 #include <Arduino.h>
 #include "WiFiSet.h"
-
+#include <LiquidCrystal.h>
+// Objects and Variables
+const int rs = 2, en = 3, d4 = 4, d5 = 5, d6 = 6 , d7 = 7;
+LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 WiFiSet wifiSet;
-void setup() {
+void setup() 
+{
   // put your setup code here, to run once:
-  Serial.begin(9600);
-  pinMode(LED_BUILTIN, OUTPUT);
+  lcd.begin(16, 2);
+  lcd.println("Hello Wordl");
 }
 
-void loop() {
+void loop() 
+{
   // put your main code here, to run repeatedly:
-  digitalWrite(LED_BUILTIN, HIGH);
-  delay(1000);
-  digitalWrite(LED_BUILTIN, LOW);
-  delay(1000);
-  wifiSet.scanNetworks();
 }
